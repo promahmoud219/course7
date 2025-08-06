@@ -8,7 +8,10 @@
 
 
 namespace matrix {
+
     
+
+
     void FillMatrixWithRandomNumbers (int matrix[100][100], int row, int column) 
     {
         for (int i = 0; i < row; i++)
@@ -17,6 +20,7 @@ namespace matrix {
                 matrix[i][j] = myrandom::GetrandomNumberInRange(1, 100);
         }
     }
+    
     void FillMatrixWithOrderNumbers (int matrix[100][100], int row, int column) 
     {
         int counter = 0;
@@ -31,6 +35,33 @@ namespace matrix {
         }
     
     }
+    
+    int SumOfMatrix (int matrix[100][100], int row, int column) 
+    {
+        int counter = 0;
+
+        for (int i = 0; i < row; i++)
+        {
+            for (int j = 0; j < column; j++)
+                counter += matrix[i][j];
+        }
+        return counter;
+    }
+
+    void MiddleRow (int matrix[100][100], int array[100], int row, int column) 
+    {
+        
+        for (int i = 0; i < row; i++)
+        {
+            if ((row /2) == i)
+            {
+                for (int j = 0; j < column; j++)
+                {
+                    array[j] = matrix[i][j];
+                }
+            }
+        }
+    }
 
     void FillTransposeMatrix (int matrix[100][100], int transpose_matrix[100][100], int row, int column) 
     {
@@ -38,7 +69,20 @@ namespace matrix {
         {
             for (int j = 0; j < column; j++)
             {
-                transpose_matrix[i][j] = matrix[j][i];
+                transpose_matrix[j][i] = matrix[i][j];
+            }
+            
+        }
+        
+    }
+
+    void MultiplyTwoMatrices (int matrix1[100][100], int matrix2[100][100], int  empty_matrix[100][100], int row, int column) 
+    {
+        for (int i = 0;i < row;i++)
+        {
+            for (int j = 0; j < column; j++)
+            {
+                empty_matrix[i][j] = matrix1[i][j] * matrix2[i][j];
             }
             
         }
@@ -76,4 +120,26 @@ namespace matrix {
         }
     }
      
+    bool AreMatricesEqual (int matrix1[100][100], int matrix2[100][100], int row, int column)
+    {
+        for (int i = 0; i < row; i++)
+        {
+            for (int j = 0; j < column; j++)
+            {
+                if (matrix1[i][j] != matrix2[i][j])
+                    return false;
+            }
+        }
+        return true;        
+    }
+    
+    void CopyMatrix (int matrix[100][100], int empty_matrix[100][100], int row, int column)
+    {
+        for (int i = 0; i < row; i++)
+        {
+            for (int j = 0; j < column; j++)
+                empty_matrix[i][j] = matrix[i][j];
+        }
+    }
+
 }

@@ -34,6 +34,7 @@ namespace array {
     int PositiveNumbersCount (int array[], int array_length);
     int NegativeNumbersCount (int array[], int array_length);
     void PrintRowsSumArray(const int array[], int length);
+    void PrintColumnsSumArray(const int array[], int length);
         
 }
 

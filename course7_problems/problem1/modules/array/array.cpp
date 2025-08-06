@@ -1,6 +1,7 @@
 // array.cpp
 
 #include <iostream>
+#include <iomanip>
 
 #include "array.hpp"
 #include "../inputvalidation/inputvalidation.hpp"
@@ -68,9 +69,21 @@ namespace array {
         
         for (int i = 0; i < length; ++i) 
         {
-            std::cout << " Row " << i + 1 << " Sum = " << array[i] << std::endl;
+            std::cout << std::setw(5) << std::left << "Row " << i + 1 << " Sum = " << array[i] << std::endl;
         }
         std::cout << "\n";
+
+    }
+    
+
+    void PrintColumnsSumArray(const int array[], int length) {
+        
+        std::cout << "\n";
+
+        for (int i = 0; i < length; ++i) 
+            std::cout << std::setw(7) << std::left << "Column " << i + 1 << " Sum = " << array[i] << "\n";
+
+        std::cout << std::endl;
 
     }
     

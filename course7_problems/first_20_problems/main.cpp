@@ -31,8 +31,8 @@ int main ()
     matrix::PrintMatrix(matrix3, row, column);
 
     int transpos_matrix[100][100];
-    matrix::FillTransposeMatrix(matrix3, transpos_matrix, 5, 5);
+    matrix::FillTransposeMatrix(matrix3, transpos_matrix, row, column);
     std::cout << "\n\nthis is the transpose matrix of matrix3:\n";
-    matrix::PrintMatrix(transpos_matrix, row, column);
+    matrix::PrintMatrix(transpos_matrix, column, row);
 
 }

@@ -34,9 +34,10 @@ namespace matrix {
 
     void FillTransposeMatrix (int matrix[100][100], int transpose_matrix[100][100], int row, int column) 
     {
-        for (int i = 0; i < row; i++)
+        
+        for (int i = 0; i < column; i++)
         {
-            for (int j = 0; j < column; j++)
+            for (int j = 0; j < row; j++)
             {
                 transpose_matrix[i][j] = matrix[j][i];
             }

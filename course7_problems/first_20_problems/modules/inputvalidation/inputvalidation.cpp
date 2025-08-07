@@ -16,7 +16,7 @@ namespace inputvalidation {
             std::cout << prompt;
             std::cin >> number;
 
-            if (std::cin.fail() || number <= 0) {
+            if (std::cin.fail() || number < 0) {
                 std::cin.clear(); // clear the error flag
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // discard invalid input
                 std::cout << "Invalid input. Please enter a positive number.\n";

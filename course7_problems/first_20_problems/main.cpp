@@ -53,11 +53,26 @@ int main ()
     matrix::PrintMatrix(empty_matrix, row, column);
     
     if (matrix::AreMatricesEqual(multiplied_matrix, empty_matrix, row, column))
-        std::cout << "\nthey are equals";
+        std::cout << "\nthey are equals\n";
     else
-        std::cout << "\nthey are not equals";
+        std::cout << "\nthey are not equals\n";
  
         
-    
+    int matrix_by_user[100][100];
+    matrix::FillMatrixByUser(matrix_by_user, row, column);
+    if (matrix::IsIdentityMatrix(matrix_by_user, row, column))
+        std::cout << "\nthis is an identity matrix\n";
+    else    
+        std::cout << "\nthis is not an identity matrix\n";    
 
+
+    if (matrix::IsSparceMatrix(matrix_by_user, row, column))
+        std::cout << "\nthis matrix \"matrix_by_user\" is sparce\n";
+    else
+        std::cout << "\nthis matrix \"matrix_by_user\" is not sparce\n";
+
+    if (matrix::IsNumberFound(matrix_by_user, row, column, 10))
+        std::cout << "\nnumber 10 is found in matrix_by_user: ";
+    if (!matrix::IsNumberFound(matrix_by_user, row, column, 7))
+        std::cout << "\nnumber 7 is not found in matrix_by_user: ";
 }

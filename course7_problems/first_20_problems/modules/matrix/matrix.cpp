@@ -9,31 +9,25 @@
 
 namespace matrix {
 
-    bool AreMatricesEqual(const stMatrix& m1, const stMatrix& m2) {
-        if (m1.rows != m2.rows || m1.cols != m2.cols)
+    bool AreMatricesEqual(const stMatrix& mx1, const stMatrix& mx2) {
+        if (mx1.rows != mx2.rows || mx1.cols != mx2.cols)
             return false;
 
-        for (int i = 0; i < m1.rows; i++) {
-            for (int j = 0; j < m1.cols; j++) {
-                if (m1.data[i][j] != m2.data[i][j])
+        for (int i = 0; i < mx1.rows; i++) {
+            for (int j = 0; j < mx1.cols; j++) {
+                if (mx1.data[i][j] != mx2.data[i][j])
                     return false;
             }
         }
         return true;
     }
 
-    matrix::stMatrix CopyMatrix (const stMatrix& source) 
+    void CopyMatrix (const stMatrix& source, stMatrix& empty_mx) 
     {
-        matrix::stMatrix empty_mx;
-        
-        empty_mx.rows = source.rows;
-        empty_mx.cols = source.cols;
-
         for (int i = 0; i < source.rows; i++) {
             for (int j = 0; j < source.cols; j++) 
                 empty_mx.data[i][j] = source.data[i][j];
-        }
-        return empty_mx;
+        } 
     }
 
     int CountNumberInMatrix(const stMatrix& mx, int number_to_count) {
@@ -58,9 +52,8 @@ namespace matrix {
     }
 
     
-    void FillTransposeMatrix(const stMatrix& mx, stMatrix& result) {
-        result.rows = mx.cols;
-        result.cols = mx.rows;
+    void FillTransposeMatrix(const stMatrix& mx, stMatrix& result) { 
+
         for (int i = 0; i < mx.rows; i++) {
             for (int j = 0; j < mx.cols; j++) {
                 result.data[j][i] = mx.data[i][j];
@@ -70,6 +63,7 @@ namespace matrix {
 
     void FillMatrixWithOrderNumbers(stMatrix& mx) {
         int counter = 1;
+
         for (int i = 0; i < mx.rows; i++) {
             for (int j = 0; j < mx.cols; j++) {
                 mx.data[i][j] = counter++;
@@ -85,9 +79,18 @@ namespace matrix {
                 mx.data[i][j] = myrandom::GetrandomNumberInRange(1, 100);
             }
         }
-    }
-
+    } 
+ 
+    void GetTranspose (const stMatrix& original, stMatrix& empty_matrix) 
+    {   
+        for (int i = 0; i < original.cols; i++)
+        {
+            for (int j = 0; j < original.rows; j++)
+                empty_matrix.data[i][j] = original.data[j][i];
+        }
+    }    
     
+
    
     bool IsNumberFound(const stMatrix& mx, int number_to_find) {
         for (int i = 0; i < mx.rows; i++) {
@@ -136,25 +139,21 @@ namespace matrix {
 
     
    
-    void MiddleRow(const stMatrix& mx, int array[100]) {
+    
+    void GetMiddleRow(const stMatrix& mx, int result_array[])
+    {
         int mid = mx.rows / 2;
         for (int j = 0; j < mx.cols; j++) {
-            array[j] = mx.data[mid][j];
+            result_array[j] = mx.data[mid][j];
         }
-    }
-    void GetMiddleRow(const stMatrix& m, int result_array[])
-    {
-        
     }
 
-    void MultiplyTwoMatrices(const stMatrix& m1, const stMatrix& m2, stMatrix& result) {
-        for (int i = 0; i < m1.rows; i++) {
-            for (int j = 0; j < m1.cols; j++) {
-                result.data[i][j] = m1.data[i][j] * m2.data[i][j];
+    void Multiply(const stMatrix& mx1, const stMatrix& mx2, stMatrix& result) {
+        for (int i = 0; i < mx1.rows; i++) {
+            for (int j = 0; j < mx1.cols; j++) {
+                result.data[i][j] = mx1.data[i][j] * mx2.data[i][j];
             }
-        }
-        result.rows = m1.rows;
-        result.cols = m1.cols;
+        } 
     }
 
     
@@ -168,20 +167,21 @@ namespace matrix {
     }
 
     
-    void SumMatrixRowsIntoArray(const stMatrix& mx, int result[100]) {
+    void SumMatrixRowsIntoArray(const stMatrix& mx, int result_array[])
+    {
         for (int i = 0; i < mx.rows; i++) {
-            result[i] = 0;
+            result_array[i] = 0;
             for (int j = 0; j < mx.cols; j++) {
-                result[i] += mx.data[i][j];
+                result_array[i] += mx.data[i][j];
             }
         }
     }
 
-    void SumMatrixColumnsIntoArray(const stMatrix& mx, int result[100]) {
+    void SumMatrixColumnsIntoArray(const stMatrix& mx, int result_array[]) {
         for (int j = 0; j < mx.cols; j++) {
-            result[j] = 0;
+            result_array[j] = 0;
             for (int i = 0; i < mx.rows; i++) {
-                result[j] += mx.data[i][j];
+                result_array[j] += mx.data[i][j];
             }
         }
     }

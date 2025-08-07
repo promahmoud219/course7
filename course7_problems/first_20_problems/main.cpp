@@ -27,55 +27,64 @@ int main ()
     array::PrintColumnsSumArray(array2, mx1.cols);
 
     matrix::stMatrix mx2;
+    mx2.rows = mx1.rows; 
+    mx2.cols = mx1.cols;
     matrix::FillMatrixWithOrderNumbers(mx2);
     std::cout << "\nThe following is a " << mx2.rows << "x" << mx2.cols << " ordered matrix\"matrix2\":\n";
     matrix::PrintMatrix(mx2);
 
-    int transpos_matrix[100][100];
     matrix::stMatrix transpose_mx;
+    transpose_mx.rows = mx1.rows;
+    transpose_mx.cols = mx1.cols;
+    matrix::GetTranspose(mx2, transpose_mx);
+    std::cout << "\n\nthis is the transpose matrix of matrix2:\n";
+    matrix::PrintMatrix(transpose_mx);
 
-    matrix::GetTranspose()
-    std::cout << "\n\nthis is the transpose matrix of matrix3:\n";
-    matrix::PrintMatrix(transpos_matrix, column, row);
-
-    int multiplied_matrix[100][100];
-    matrix::MultiplyTwoMatrices(matrix, matrix3, multiplied_matrix, row, column);
+    matrix::stMatrix matrix_multiply;
+    matrix_multiply.rows = mx1.rows;
+    matrix_multiply.cols = mx1.cols;
+    matrix::Multiply(mx1, mx2, matrix_multiply);
     std::cout << "\nthis is the result of  multiply matrix with matrix3:\n";
-    matrix::PrintMatrix(multiplied_matrix, row, column);
+    matrix::PrintMatrix(matrix_multiply);
 
     std::cout << "\n\nthis is the middle row  of multiplied matrix\n";
     int middl_row_array[100];
-    matrix::MiddleRow(multiplied_matrix, middl_row_array, row, column);
-    array::PrintArray(middl_row_array, column);
+    matrix::GetMiddleRow(matrix_multiply, middl_row_array);
+    array::PrintArray(middl_row_array, mx1.cols);
 
-    std::cout << "\nThis is the sum of matrix: " << matrix::SumOfMatrix(matrix, row, column) << std::endl;
+    std::cout << "\nThis is the sum of matrix1: " << matrix::SumOfMatrix(mx1) << std::endl;
 
-    int empty_matrix[100][100];
-    matrix::CopyMatrix(multiplied_matrix, empty_matrix, row, column);
+    matrix::stMatrix empty_matrix;
+    empty_matrix.rows = mx1.rows;
+    empty_matrix.cols = mx1.cols;
+    matrix::CopyMatrix(matrix_multiply, empty_matrix);
     std::cout << "\n\nthis is empty matrix after being copied from multiplied matrix:\n";
-    matrix::PrintMatrix(empty_matrix, row, column);
+    matrix::PrintMatrix(empty_matrix);
     
-    if (matrix::AreMatricesEqual(multiplied_matrix, empty_matrix, row, column))
-        std::cout << "\nthey are equals\n";
+
+    if (matrix::AreMatricesEqual(matrix_multiply, empty_matrix))
+        std::cout << "\nmatrix_multiply, empty_matrix are equals\n";
     else
-        std::cout << "\nthey are not equals\n";
+        std::cout << "\nmatrix_multiply, empty_matrix are not equals\n";
  
         
-    int matrix_by_user[100][100];
-    matrix::FillMatrixByUser(matrix_by_user, row, column);
-    if (matrix::IsIdentityMatrix(matrix_by_user, row, column))
+    matrix::stMatrix matrix_by_user;
+    matrix_by_user.rows = mx1.rows;
+    matrix_by_user.cols = mx1.cols;
+    matrix::FillMatrixByUser(matrix_by_user);
+    if (matrix::IsIdentityMatrix(matrix_by_user))
         std::cout << "\nthis is an identity matrix\n";
     else    
         std::cout << "\nthis is not an identity matrix\n";    
 
 
-    if (matrix::IsSparceMatrix(matrix_by_user, row, column))
+    if (matrix::IsSparceMatrix(matrix_by_user))
         std::cout << "\nthis matrix \"matrix_by_user\" is sparce\n";
     else
         std::cout << "\nthis matrix \"matrix_by_user\" is not sparce\n";
 
-    if (matrix::IsNumberFound(matrix_by_user, row, column, 10))
+    if (matrix::IsNumberFound(matrix_by_user, 10))
         std::cout << "\nnumber 10 is found in matrix_by_user: ";
-    if (!matrix::IsNumberFound(matrix_by_user, row, column, 7))
+    if (!matrix::IsNumberFound(matrix_by_user, 7))
         std::cout << "\nnumber 7 is notfound in matrix_by_user: ";
 }

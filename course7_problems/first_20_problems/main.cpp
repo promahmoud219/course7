@@ -9,29 +9,32 @@
 
 int main () 
 {
-    int matrix[100][100];
-    int row = inputvalidation::ReadPositiveNumber("\nEnter Row:\n");
-    int column = inputvalidation::ReadPositiveNumber("\nEnter Column:\n");
+    matrix::stMatrix mx1;
+
+    mx1.rows = inputvalidation::ReadPositiveNumber("\nEnter Row:\n");
+    mx1.cols = inputvalidation::ReadPositiveNumber("\nEnter Column:\n");
     
-    matrix::FillMatrixWithRandomNumbers(matrix, row, column);
-    std::cout << "\nThe following is a " << row << "x" << column << " random matrix \"matrix\":\n";
-    matrix::PrintMatrix(matrix, row, column);
+    matrix::FillMatrixWithRandomNumbers(mx1);
+    std::cout << "\nThe following is a " << mx1.rows << "x" << mx1.cols << " random matrix \"matrix\":\n";
+    matrix::PrintMatrix(mx1);
 
     int array[100];
-    matrix::SumMatrixRowsIntoArray(matrix, array, row, column);
-    array::PrintRowsSumArray(array, row);
+    matrix::SumMatrixRowsIntoArray(mx1, array);
+    array::PrintRowsSumArray(array, mx1.rows);
     
     int array2[100];
-    matrix::SumMatrixColumnsIntoArray(matrix, array2,  row, column);
-    array::PrintColumnsSumArray(array2, column);
+    matrix::SumMatrixColumnsIntoArray(mx1, array2);
+    array::PrintColumnsSumArray(array2, mx1.cols);
 
-    int matrix3[100][100];
-    matrix::FillMatrixWithOrderNumbers(matrix3, row, column);
-    std::cout << "\nThe following is a " << row << "x" << column << " ordered matrix\"matrix3\":\n";
-    matrix::PrintMatrix(matrix3, row, column);
+    matrix::stMatrix mx2;
+    matrix::FillMatrixWithOrderNumbers(mx2);
+    std::cout << "\nThe following is a " << mx2.rows << "x" << mx2.cols << " ordered matrix\"matrix2\":\n";
+    matrix::PrintMatrix(mx2);
 
     int transpos_matrix[100][100];
-    matrix::FillTransposeMatrix(matrix3, transpos_matrix, row, column);
+    matrix::stMatrix transpose_mx;
+
+    matrix::GetTranspose()
     std::cout << "\n\nthis is the transpose matrix of matrix3:\n";
     matrix::PrintMatrix(transpos_matrix, column, row);
 
@@ -74,5 +77,5 @@ int main ()
     if (matrix::IsNumberFound(matrix_by_user, row, column, 10))
         std::cout << "\nnumber 10 is found in matrix_by_user: ";
     if (!matrix::IsNumberFound(matrix_by_user, row, column, 7))
-        std::cout << "\nnumber 7 is not found in matrix_by_user: ";
+        std::cout << "\nnumber 7 is notfound in matrix_by_user: ";
 }

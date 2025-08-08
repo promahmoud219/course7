@@ -34,6 +34,8 @@ namespace matrix {
     
     void GetTranspose(const stMatrix& original, stMatrix& transposed_matrix);
     void GetMiddleRow(const stMatrix& mx, int result_array[]);
+    int GetMinNum(const stMatrix& original);
+    int GetMaxNum(const stMatrix& original);
     
     bool IsScalarMatrix(const stMatrix& mx);
     bool IsIdentityMatrix(const stMatrix& mx);

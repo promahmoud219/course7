@@ -33,19 +33,14 @@ int main ()
     std::cout << "\nThe following is a " << mx2.rows << "x" << mx2.cols << " ordered matrix\"matrix2\":\n";
     matrix::PrintMatrix(mx2);
 
-<<<<<<< HEAD
-    int transpos_matrix[100][100];
-    matrix::FillTransposeMatrix(matrix3, transpos_matrix, row, column);
-    std::cout << "\n\nthis is the transpose matrix of matrix3:\n";
-    matrix::PrintMatrix(transpos_matrix, column, row);
-=======
+ 
     matrix::stMatrix transpose_mx;
     transpose_mx.rows = mx1.rows;
     transpose_mx.cols = mx1.cols;
     matrix::GetTranspose(mx2, transpose_mx);
     std::cout << "\n\nthis is the transpose matrix of matrix2:\n";
     matrix::PrintMatrix(transpose_mx);
->>>>>>> problems_from_6
+ 
 
     matrix::stMatrix matrix_multiply;
     matrix_multiply.rows = mx1.rows;
@@ -73,7 +68,7 @@ int main ()
         std::cout << "\nmatrix_multiply, empty_matrix are equals\n";
     else
         std::cout << "\nmatrix_multiply, empty_matrix are not equals\n";
- 
+
         
     matrix::stMatrix matrix_by_user;
     matrix_by_user.rows = mx1.rows;
@@ -94,4 +89,13 @@ int main ()
         std::cout << "\nnumber 10 is found in matrix_by_user: ";
     if (!matrix::IsNumberFound(matrix_by_user, 7))
         std::cout << "\nnumber 7 is notfound in matrix_by_user: ";
+
+
+    std::cout << "\n\nthis is the min num in matrix_by_user:\n" << matrix::GetMinNum(matrix_by_user);
+    std::cout << "\n\nthis is the max num in matrix_by_user:\n" << matrix::GetMaxNum(matrix_by_user) << std::endl;
+
+
+    
+
+
 }

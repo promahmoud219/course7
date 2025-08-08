@@ -5,6 +5,7 @@
 
 #include "matrix.hpp"
 #include "../myrandom/random.hpp"
+#include "../array/array.hpp"
 #include "../inputvalidation/inputvalidation.hpp"
 
 namespace matrix {
@@ -22,6 +23,7 @@ namespace matrix {
         return true;
     }
 
+    
     void CopyMatrix (const stMatrix& source, stMatrix& empty_mx) 
     {
         for (int i = 0; i < source.rows; i++) {
@@ -41,28 +43,16 @@ namespace matrix {
         return counter;
     }
 
-<<<<<<< HEAD
-    void FillTransposeMatrix (int matrix[100][100], int transpose_matrix[100][100], int row, int column) 
-    {
-        
-        for (int i = 0; i < column; i++)
-        {
-            for (int j = 0; j < row; j++)
-            {
-                transpose_matrix[i][j] = matrix[j][i];
-=======
     
     void FillMatrixByUser(stMatrix& mx) {
         for (int i = 0; i < mx.rows; i++) {
             for (int j = 0; j < mx.cols; j++) {
                 std::string msg = "Enter value for [" + std::to_string(i + 1) + "][" + std::to_string(j + 1) + "]: ";
                 mx.data[i][j] = inputvalidation::ReadPositiveNumber(msg);
->>>>>>> problems_from_6
             }
         }
     }
 
-    
     void FillTransposeMatrix(const stMatrix& mx, stMatrix& result) { 
 
         for (int i = 0; i < mx.rows; i++) {
@@ -101,8 +91,58 @@ namespace matrix {
         }
     }    
     
+    int GetMinNum(const stMatrix& original)
+    {
+        int minimum_value = original.data[0][0];
 
-   
+        for (int i = 0; i < original.rows; i++)
+        {
+            for (int j = 0; j < original.cols; j++)
+            {
+                if (original.data[i][j] < minimum_value)
+                    minimum_value = original.data[i][j];
+            }
+        }
+        return minimum_value;        
+    }
+    
+    int GetMaxNum(const stMatrix& original)
+    {
+        int maximum_value = original.data[0][0];
+        
+        for (int i = 0; i < original.rows; i++)
+        {
+            for (int j = 0; j < original.cols; j++)
+            {
+                if (original.data[i][j] > maximum_value)
+                    maximum_value = original.data[i][j];
+            }
+        }
+        return maximum_value;        
+    }
+    
+    //^ wrong for performance 
+
+    // void FillIntersectedNums (const stMatrix& mx1, const stMatrix& mx2, int array[100])
+    // {
+    //     int counter = 0;
+
+    //     for (int i = 0; i < mx1.rows; i++)
+    //     {
+    //         for (int j = 0; j < mx1.cols; j++)
+    //         {
+    //             if(IsNumberFound(mx2, mx1.data[i][j]))
+    //             {
+    //                 if(!array::IsNumberFoundInArray(array, counter, mx1.data[i][j]))
+    //                 {
+    //                     array[counter] = mx1.data[i][j];
+    //                     counter++;
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
+
     bool IsNumberFound(const stMatrix& mx, int number_to_find) {
         for (int i = 0; i < mx.rows; i++) {
             for (int j = 0; j < mx.cols; j++) {

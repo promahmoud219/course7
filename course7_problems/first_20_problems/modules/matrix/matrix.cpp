@@ -105,7 +105,19 @@ namespace matrix {
         }
         return minimum_value;        
     }
-    
+    bool IsPalindromeMatrix (const stMatrix& original)
+    {
+        for (int i = 0; i < original.rows; i++)
+        {
+            for (int j = 0; j < original.cols/2; j++)
+            {
+                if (original.data[i][j] != original.data[i][original.cols - 1 - j])
+                   return false;
+            }
+        }
+        return true;        
+    }
+
     int GetMaxNum(const stMatrix& original)
     {
         int maximum_value = original.data[0][0];

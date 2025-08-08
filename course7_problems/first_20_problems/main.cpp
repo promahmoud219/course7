@@ -94,8 +94,11 @@ int main ()
     std::cout << "\n\nthis is the min num in matrix_by_user:\n" << matrix::GetMinNum(matrix_by_user);
     std::cout << "\n\nthis is the max num in matrix_by_user:\n" << matrix::GetMaxNum(matrix_by_user) << std::endl;
 
+    if (matrix::IsPalindromeMatrix(matrix_by_user))
+        std::cout << "\n\nmatrix_by_user is a palindrome mx\n";
+    else    
+        std::cout << "\n\nmatrix_by_user is not a palindrome mx\n";
 
-    
 
 
 }

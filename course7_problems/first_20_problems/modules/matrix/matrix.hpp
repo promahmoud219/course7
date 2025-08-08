@@ -37,9 +37,10 @@ namespace matrix {
     int GetMinNum(const stMatrix& original);
     int GetMaxNum(const stMatrix& original);
     
-    bool IsScalarMatrix(const stMatrix& mx);
     bool IsIdentityMatrix(const stMatrix& mx);
     bool IsNumberFound(const stMatrix& mx, int number_to_find);
+    bool IsPalindromeMatrix (const stMatrix& original);
+    bool IsScalarMatrix(const stMatrix& mx);
     bool IsSparceMatrix(const stMatrix& mx);
     
     void Multiply(const stMatrix& mx1, const stMatrix& mx2, stMatrix& result);;

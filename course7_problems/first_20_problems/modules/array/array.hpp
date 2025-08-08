@@ -3,6 +3,7 @@
 #pragma once
 
 namespace array {
+    void PrintStringArray(const std::string text[100], int length);
     void SumOfTwoArrays (int array_to_be_filled[], int array1[], int array2[], int arr_length);
     bool IsNumberFoundInArray (const int arr[], int arr_length, int number_to_check);
     int PrimeNumbersInArray (const int arr[], int arr2[], int arr_length);

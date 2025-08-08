@@ -4,6 +4,7 @@
 #include <iostream>
 
 #include "matrix/matrix.hpp"
+#include "mystring/mystring.hpp"
 #include "array/array.hpp"
 #include "inputvalidation/inputvalidation.hpp"
 
@@ -100,5 +101,12 @@ int main ()
         std::cout << "\n\nmatrix_by_user is not a palindrome mx\n";
 
 
-
+    
+    std::string text = "Mahmoud Ahmed Abdel aal Ahmed";
+    std::string first_letters[100];
+    int length = 0;
+    mystring::FillArrayWithFirstLetter(text, first_letters, length);
+    std::cout << "\nFirst letters of this string: \n"; 
+    array::PrintStringArray(first_letters, length);
+    
 }

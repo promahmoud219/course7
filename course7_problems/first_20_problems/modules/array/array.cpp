@@ -1,6 +1,7 @@
 // array.cpp
 
 #include <iostream>
+#include <string>
 #include <iomanip>
 
 #include "array.hpp"
@@ -16,6 +17,7 @@ namespace array {
     {
         return FindNumberInArry(array, array_length, check_number) != -1;
     }
+    
     void SumOfTwoArrays (int array_to_be_filled[], int array1[], int array2[], int array_length) 
     {
         for (int i = 0; i < array_length; i++)
@@ -64,6 +66,15 @@ namespace array {
 
     }
 
+    void PrintStringArray(const std::string text[100], int length) {
+        
+        for (int i = 0; i < length; ++i) 
+        {
+            std::cout << text[i] << " ";
+        }
+        std::cout << "\n";
+    }
+
     void PrintRowsSumArray(const int array[], int length) {
         
         
@@ -87,14 +98,7 @@ namespace array {
 
     }
     
-    void PrintStringArray(const std::string array[], int length) {
-
-        for (int i = 0; i < length; ++i) 
-        {
-            std::cout << array[i] << "\n";
-        }
-        std::cout << "\n";
-    }
+ 
 
     void AddArrayElement(int array[100], int &array_length, int number)
     {

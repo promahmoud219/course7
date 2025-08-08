@@ -11,7 +11,7 @@
 #include "../generateKeys/generateKeys.hpp"
 
 namespace array {
-    
+
     
     bool IsNumberFoundInArray (int array[], int array_length, int check_number) 
     {
@@ -66,11 +66,11 @@ namespace array {
 
     }
 
-    void PrintStringArray(const std::string text[100], int length) {
+    void PrintStringArray(const stArray array) {
         
-        for (int i = 0; i < length; ++i) 
+        for (int i = 0; i < array.length; ++i) 
         {
-            std::cout << text[i] << " ";
+            std::cout << array.data[i] << " ";
         }
         std::cout << "\n";
     }

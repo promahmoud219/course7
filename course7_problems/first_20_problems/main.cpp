@@ -103,9 +103,9 @@ int main ()
 
     
     std::string text = "mahmoud Ahmed abdel aal Ahmed";
-    std::string first_letters[100];
-    int length = 0;
-    mystring::FillArrayWithFirstLetter(text, first_letters, length);
+    array::stArray first_letters;
+    first_letters.length = 0;
+    mystring::FillArrayWithFirstLetter(text,);
     std::cout << "\nFirst letters of this string: \n"; 
     array::PrintStringArray(first_letters, length);
     mystring::UpperFirstLetterOfEachWord(text);
@@ -126,6 +126,22 @@ int main ()
     std::cout << "\nInvert all string MAHMOUD ahmed:\n";
     mystring::InvertLetterCase(text);
     std::cout << text;
+
+    std::cout << "\n\nsmall letters:\n" << mystring::CountSmallLetters(text);
+    std::cout << "\n\ncapital letters:\n" << mystring::CountCapitalLetters(text);
+    std::cout << "\n\nletters number:\n" << mystring::CountLetters(text);
+    std::cout << "\nletter m was written " << mystring::CountLetter(text, 'm') << "times" << "\n";
+
+    std::cout << "\na is vowel: " << mystring::IsVowel('a');
+    std::cout << "\nNumber of vowels is:\n" << mystring::CountVowels(text);
+    
+
+    array::stArray st_array;
+    st_array.data[100];
+    st_array.length = 0;
+    mystring::GetVowels(text, st_array);
+    std::cout << "\nthese are the vowels of Mahmoud Ahmed Abdel Ahmed:\n";
+    array::PrintStringArray()
 
 
 

@@ -86,15 +86,15 @@ namespace mystring {
         return Counter; 
     }
     
-    void FillArrayWithFirstLetter (const std::string& text, std::string array[100], int& length)
+    void FillArrayWithFirstLetter (const std::string& text, array::stArray array)
     {
         bool isFirstLetter = true;    
-        length = 0;
+        array.length = 0;
 
         for (int i = 0; i < text.length(); i++)
         {
 
-            if (text[i] != ' ' && isFirstLetter)
+            if (c != ' ' && isFirstLetter)
             {             
                 array[length] = text[i];
                 length++;

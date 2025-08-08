@@ -105,7 +105,7 @@ int main ()
     std::string text = "mahmoud Ahmed abdel aal Ahmed";
     array::stArray first_letters;
     first_letters.length = 0;
-    mystring::FillArrayWithFirstLetter(text,);
+    mystring::FillArrayWithFirstLetter(text, first_letters);
     std::cout << "\nFirst letters of this string: \n"; 
     array::PrintStringArray(first_letters, length);
     mystring::UpperFirstLetterOfEachWord(text);

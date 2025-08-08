@@ -14,6 +14,8 @@ namespace mystring {
     int  CountSmallLetters(const std::string& S1);
     int CountVowels (const std::string& text);
     void GetVowels (const std::string& text, array::stArray& array);
+    void PrintEachWordInString(std::string S1);
+    int CountEachWordInString(std::string& S1);
     void InvertLetterCase (std::string& text);
     char InvertLetterCase (char c);
     bool IsVowel(char c);

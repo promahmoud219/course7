@@ -103,6 +103,47 @@ namespace mystring {
         
     }
     
+    
+    void PrintEachWordInString(std::string S1) 
+    { 
+        std::string delim = " "; // delimiter      
+        std::cout <<"\nYour string wrords are: \n\n"; short pos = 0; std::string sWord; // define a string variable  // use find() function to get the position of the delimiters  
+        while ((pos = S1.find(delim)) != std::string::npos)     
+        {         
+            sWord =S1.substr(0, pos); // store the word   
+            if (sWord !="")         
+            {             
+                std::cout << sWord << std::endl;         
+            } 
+            S1.erase(0, pos + delim.length());  /* erase() until positon and move to next word. */    
+        
+        } 
+        if (S1!="")     
+        {         
+            std::cout <<S1<< std::endl; // it print last word of the string.    
+        } 
+
+    }
+    int CountEachWordInString(std::string& S1) 
+    { 
+        int counter = 0;
+        std::string delim = " "; // delimiter      
+        // std::cout <<"\nYour string wrords are: \n\n";
+        short pos = 0; 
+        std::string sWord; // define a string variable  // use find() function to get the position of the delimiters  
+        while ((pos = S1.find(delim)) != std::string::npos)     
+        {         
+            sWord =S1.substr(0, pos); // store the word   
+            if (sWord !="")         
+                counter++;       
+            S1.erase(0, pos + delim.length());  /* erase() until positon and move to next word. */    
+        } 
+        if (S1!="")     
+            counter++; // it print last word of the string.    
+
+        return counter;
+    }
+    
     void GetVowels (const std::string& text, array::stArray& array)
     {
         array.length = 0;

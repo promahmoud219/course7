@@ -122,7 +122,7 @@ int main ()
     std::cout << "\nletter M to m:\n" << mystring::InvertLetterCase('M');
     std::cout << "\nletter m to M:\n" << mystring::InvertLetterCase('m') << std::endl;
 
-    text = "MAHMOUD ahmed";
+    text = "MAHMOUD ahmed Ahmed abdel ahmed";
     std::cout << "\nInvert all string MAHMOUD ahmed:\n";
     mystring::InvertLetterCase(text);
     std::cout << text;
@@ -143,6 +143,6 @@ int main ()
     std::cout << "\nthese are the vowels of Mahmoud Ahmed Abdel Ahmed:\n";
     array::PrintStringArray(st_array);
 
-
-
+    mystring::PrintEachWordInString(text);
+    std::cout << "\n\nNumber of words: \n" << mystring::CountEachWordInString(text);
 }

@@ -107,7 +107,7 @@ int main ()
     first_letters.length = 0;
     mystring::FillArrayWithFirstLetter(text, first_letters);
     std::cout << "\nFirst letters of this string: \n"; 
-    array::PrintStringArray(first_letters, length);
+    array::PrintStringArray(first_letters);
     mystring::UpperFirstLetterOfEachWord(text);
     std::cout << "\nthis is the text after converting first letter of each word to upper case:\n" << text;
     
@@ -141,7 +141,7 @@ int main ()
     st_array.length = 0;
     mystring::GetVowels(text, st_array);
     std::cout << "\nthese are the vowels of Mahmoud Ahmed Abdel Ahmed:\n";
-    array::PrintStringArray()
+    array::PrintStringArray(st_array);
 
 
 

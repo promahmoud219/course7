@@ -10,6 +10,7 @@
 #include "../myrandom/random.hpp"
 #include "../generateKeys/generateKeys.hpp"
 
+
 namespace array {
 
     
@@ -37,6 +38,7 @@ namespace array {
         return false;
     }
 
+    
     int PrimeNumbersInArray (const int array[], int arr2[], int array_length) 
     {
         int count = 0;
@@ -86,7 +88,6 @@ namespace array {
 
     }
     
-
     void PrintColumnsSumArray(const int array[], int length) {
         
         std::cout << "\n";

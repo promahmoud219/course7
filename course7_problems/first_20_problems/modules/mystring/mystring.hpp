@@ -3,6 +3,7 @@
 #pragma once
 
 #include <string>
+#include "array/array.hpp"
 
 namespace mystring {
     
@@ -12,12 +13,12 @@ namespace mystring {
     int  CountCapitalLetters(const std::string& S1);
     int  CountSmallLetters(const std::string& S1);
     int CountVowels (const std::string& text);
-    void GetVowels (const std::string& text, array::stArray array);
+    void GetVowels (const std::string& text, array::stArray& array);
     void InvertLetterCase (std::string& text);
     char InvertLetterCase (char c);
     bool IsVowel(char c);
     std::string  ReadString();
-    void FillArrayWithFirstLetter (const std::string& text, std::string array[100], int& length);
+    void FillArrayWithFirstLetter (const std::string& text, array::stArray array);
     void UpperFirstLetterOfEachWord (std::string& text);
     void LowerFirstLetterOfEachWord (std::string& text);
     void LowerAllString (std::string& text);

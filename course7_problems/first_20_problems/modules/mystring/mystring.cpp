@@ -91,20 +91,19 @@ namespace mystring {
         bool isFirstLetter = true;    
         array.length = 0;
 
-        for (int i = 0; i < text.length(); i++)
+        for (char c : text)
         {
-
             if (c != ' ' && isFirstLetter)
             {             
-                array[length] = text[i];
-                length++;
+                array.data[array.length] = c;
+                array.length++;
             }         
-            isFirstLetter = (text[i] == ' ' ? true : false);
+            isFirstLetter = (c == ' ' ? true : false);
         }
         
     }
     
-    void GetVowels (const std::string& text, array::stArray array)
+    void GetVowels (const std::string& text, array::stArray& array)
     {
         array.length = 0;
 
@@ -112,7 +111,7 @@ namespace mystring {
         {
             if (IsVowel(c))
             {
-                array[array.length] = c;
+                array.data[array.length] = c;
                 array.length++;
             }
         }

@@ -102,11 +102,31 @@ int main ()
 
 
     
-    std::string text = "Mahmoud Ahmed Abdel aal Ahmed";
+    std::string text = "mahmoud Ahmed abdel aal Ahmed";
     std::string first_letters[100];
     int length = 0;
     mystring::FillArrayWithFirstLetter(text, first_letters, length);
     std::cout << "\nFirst letters of this string: \n"; 
     array::PrintStringArray(first_letters, length);
+    mystring::UpperFirstLetterOfEachWord(text);
+    std::cout << "\nthis is the text after converting first letter of each word to upper case:\n" << text;
     
+    mystring::LowerFirstLetterOfEachWord(text);
+    std::cout << "\nthis is the text after converting first letter of each word to upper case:\n" << text;
+
+    mystring::LowerAllString(text);
+    std::cout << "\nconverting all string to lower:\n" << text;
+    mystring::UpperAllString(text);
+    std::cout << "\nconverting all string to upper:\n" << text;
+    
+    std::cout << "\nletter M to m:\n" << mystring::InvertLetterCase('M');
+    std::cout << "\nletter m to M:\n" << mystring::InvertLetterCase('m') << std::endl;
+
+    text = "MAHMOUD ahmed";
+    std::cout << "\nInvert all string MAHMOUD ahmed:\n";
+    mystring::InvertLetterCase(text);
+    std::cout << text;
+
+
+
 }

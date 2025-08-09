@@ -145,4 +145,11 @@ int main ()
 
     mystring::PrintEachWordInString(text);
     std::cout << "\n\nNumber of words: \n" << mystring::CountEachWordInString(text);
+
+    array::stArray stArray;
+    std::string text2 = "\nMahmoud Ahmed Abdel aal Ahmed Abo Hamad";
+    stArray.data[100];
+    stArray.length = 0;
+    mystring::SplitString(text2, stArray);
+    array::PrintStringArray(stArray);
 }

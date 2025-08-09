@@ -19,6 +19,7 @@ namespace mystring {
     void InvertLetterCase (std::string& text);
     char InvertLetterCase (char c);
     bool IsVowel(char c);
+    void SplitString (std::string& text, array::stArray& array);
     std::string  ReadString();
     void FillArrayWithFirstLetter (const std::string& text, array::stArray array);
     void UpperFirstLetterOfEachWord (std::string& text);

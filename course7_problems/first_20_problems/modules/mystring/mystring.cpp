@@ -8,7 +8,31 @@
 #include "array/array.hpp"
 namespace mystring {
 
-    
+    void SplitString (std::string& text, array::stArray& array)
+    {
+        array.length = 0;
+        std::string delim = " "; 
+        short pos = 0; 
+        std::string sWord; // define a string variable  // use find() function to get the position of the delimiters  
+        while ((pos = text.find(delim)) != std::string::npos)     
+        {         
+            sWord =text.substr(0, pos); // store the word   
+            if (sWord !="")         
+            {
+                array.data[array.length] = sWord;
+                array.length++;
+            }
+            text.erase(0, pos + delim.length());  /* erase() until positon and move to next word. */    
+        } 
+        if (text!="")     
+        {
+            array.data[array.length] = sWord;
+            array.length++;
+        }
+
+            
+ 
+    }
 
     int CountVowels (const std::string& text)
     {
@@ -62,10 +86,10 @@ namespace mystring {
         return counter;
     }
 
-    int CountCapitalLetters(const std::string& S1) 
+    int CountCapitalLetters(const std::string& text) 
     {
         int Counter = 0; 
-        for (char c : S1)
+        for (char c : text)
         { 
             if (isupper(c))
                 Counter++;     
@@ -73,11 +97,11 @@ namespace mystring {
         return Counter; 
     } 
     
-    int CountSmallLetters(const std::string& S1) 
+    int CountSmallLetters(const std::string& text) 
     { 
         int Counter = 0; 
 
-        for (char c : S1)     
+        for (char c : text)     
         { 
             if (islower(c))             
                 Counter++;     
@@ -104,41 +128,42 @@ namespace mystring {
     }
     
     
-    void PrintEachWordInString(std::string S1) 
+    void PrintEachWordInString(std::string text) 
     { 
         std::string delim = " "; // delimiter      
         std::cout <<"\nYour string wrords are: \n\n"; short pos = 0; std::string sWord; // define a string variable  // use find() function to get the position of the delimiters  
-        while ((pos = S1.find(delim)) != std::string::npos)     
+        while ((pos = text.find(delim)) != std::string::npos)     
         {         
-            sWord =S1.substr(0, pos); // store the word   
+            sWord =text.substr(0, pos); // store the word   
             if (sWord !="")         
             {             
                 std::cout << sWord << std::endl;         
             } 
-            S1.erase(0, pos + delim.length());  /* erase() until positon and move to next word. */    
+            text.erase(0, pos + delim.length());  /* erase() until positon and move to next word. */    
         
         } 
-        if (S1!="")     
+        if (text!="")     
         {         
-            std::cout <<S1<< std::endl; // it print last word of the string.    
+            std::cout <<text<< std::endl; // it print last word of the string.    
         } 
 
     }
-    int CountEachWordInString(std::string& S1) 
+
+    int CountEachWordInString(std::string& text) 
     { 
         int counter = 0;
         std::string delim = " "; // delimiter      
         // std::cout <<"\nYour string wrords are: \n\n";
         short pos = 0; 
         std::string sWord; // define a string variable  // use find() function to get the position of the delimiters  
-        while ((pos = S1.find(delim)) != std::string::npos)     
+        while ((pos = text.find(delim)) != std::string::npos)     
         {         
-            sWord =S1.substr(0, pos); // store the word   
+            sWord =text.substr(0, pos); // store the word   
             if (sWord !="")         
                 counter++;       
-            S1.erase(0, pos + delim.length());  /* erase() until positon and move to next word. */    
+            text.erase(0, pos + delim.length());  /* erase() until positon and move to next word. */    
         } 
-        if (S1!="")     
+        if (text!="")     
             counter++; // it print last word of the string.    
 
         return counter;

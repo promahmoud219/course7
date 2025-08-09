@@ -10,6 +10,7 @@ SRC_FILES=$(find . -name "*.cpp")
 # Compile with includes for all subfolders inside ./modules
 g++ $SRC_FILES -I./modules -o $OUT
 
+
 # Check result
 if [ $? -eq 0 ]; then 
     echo "✅ Build successful. Run it with: ./$OUT"

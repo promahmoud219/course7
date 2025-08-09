@@ -2,11 +2,14 @@
 
 
 #include <iostream>
+#include <vector>
+#include <string>
 
-#include "matrix/matrix.hpp"
-#include "mystring/mystring.hpp"
-#include "array/array.hpp"
-#include "inputvalidation/inputvalidation.hpp"
+#include "modules/matrix/matrix.hpp"
+#include "modules/mystring/mystring.hpp"
+#include "modules/array/array.hpp"
+#include "modules/inputvalidation/inputvalidation.hpp"
+                                                                                                        
 
 int main () 
 {
@@ -145,4 +148,31 @@ int main ()
 
     mystring::PrintEachWordInString(text);
     std::cout << "\n\nNumber of words: \n" << mystring::CountEachWordInString(text);
+
+
+    std::string my_name = "     Mahmoud Ahmed Abdel aal     ";
+    std::cout << "\nthis is my name :\n" << my_name << "\n";
+    
+    mystring::TrimLeft(my_name);
+    std::cout << "this is my name after TrimLeft ():\n" << my_name;
+    
+    mystring::TrimRight(my_name);
+    std::cout << "\nthis is my name after TrimRight ():      " << my_name << "-";
+    mystring::Trim(my_name);
+    std::cout << "\nthis is my name after trim left and right :\n"; 
+    std::cout << "-" << my_name << "-"  ;
+
+    array::stArray array_string;
+    array_string.length = 4; 
+    array_string.data[0] = "mahmoud";
+    array_string.data[1] = "ahmed";
+    array_string.data[2] = "abdel aal";
+    array_string.data[3] = "ahmed";
+
+
+    std::vector<std::string> vString = {"mahmoud", "ahmed", "abdel aal", "ahmed"};
+    std::cout << "\n\nthis is the vector after joining words with vector:\n" << mystring::JoinString(vString, ",");
+    std::cout << "\n\nthis is the vector after joining words with array:\n" << mystring::JoinString(array_string, "#");
+    
+
 }

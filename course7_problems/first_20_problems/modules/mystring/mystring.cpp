@@ -3,12 +3,12 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 
 #include "mystring.hpp"
-#include "array/array.hpp"
-namespace mystring {
+#include "../array/array.hpp"
 
-    
+namespace mystring {  
 
     int CountVowels (const std::string& text)
     {
@@ -62,10 +62,10 @@ namespace mystring {
         return counter;
     }
 
-    int CountCapitalLetters(const std::string& S1) 
+    int CountCapitalLetters(const std::string& text) 
     {
         int Counter = 0; 
-        for (char c : S1)
+        for (char c : text)
         { 
             if (isupper(c))
                 Counter++;     
@@ -73,11 +73,11 @@ namespace mystring {
         return Counter; 
     } 
     
-    int CountSmallLetters(const std::string& S1) 
+    int CountSmallLetters(const std::string& text) 
     { 
         int Counter = 0; 
 
-        for (char c : S1)     
+        for (char c : text)     
         { 
             if (islower(c))             
                 Counter++;     
@@ -86,7 +86,7 @@ namespace mystring {
         return Counter; 
     }
     
-    void FillArrayWithFirstLetter (const std::string& text, array::stArray array)
+    void FillArrayWithFirstLetter (const std::string& text, array::stArray& array)
     {
         bool isFirstLetter = true;    
         array.length = 0;
@@ -103,42 +103,42 @@ namespace mystring {
         
     }
     
-    
-    void PrintEachWordInString(std::string S1) 
+    void PrintEachWordInString(std::string text) 
     { 
         std::string delim = " "; // delimiter      
         std::cout <<"\nYour string wrords are: \n\n"; short pos = 0; std::string sWord; // define a string variable  // use find() function to get the position of the delimiters  
-        while ((pos = S1.find(delim)) != std::string::npos)     
+        while ((pos = text.find(delim)) != std::string::npos)     
         {         
-            sWord =S1.substr(0, pos); // store the word   
+            sWord =text.substr(0, pos); // store the word   
             if (sWord !="")         
             {             
                 std::cout << sWord << std::endl;         
             } 
-            S1.erase(0, pos + delim.length());  /* erase() until positon and move to next word. */    
+            text.erase(0, pos + delim.length());  /* erase() until positon and move to next word. */    
         
         } 
-        if (S1!="")     
+        if (text!="")     
         {         
-            std::cout <<S1<< std::endl; // it print last word of the string.    
+            std::cout <<text<< std::endl; // it print last word of the string.    
         } 
 
     }
-    int CountEachWordInString(std::string& S1) 
+    
+    int CountEachWordInString(std::string& text) 
     { 
         int counter = 0;
         std::string delim = " "; // delimiter      
         // std::cout <<"\nYour string wrords are: \n\n";
         short pos = 0; 
         std::string sWord; // define a string variable  // use find() function to get the position of the delimiters  
-        while ((pos = S1.find(delim)) != std::string::npos)     
+        while ((pos = text.find(delim)) != std::string::npos)     
         {         
-            sWord =S1.substr(0, pos); // store the word   
+            sWord =text.substr(0, pos); // store the word   
             if (sWord !="")         
                 counter++;       
-            S1.erase(0, pos + delim.length());  /* erase() until positon and move to next word. */    
+            text.erase(0, pos + delim.length());  /* erase() until positon and move to next word. */    
         } 
-        if (S1!="")     
+        if (text!="")     
             counter++; // it print last word of the string.    
 
         return counter;
@@ -176,6 +176,52 @@ namespace mystring {
         return vowels.find(c) != std::string::npos;
     }
 
+
+    std::string JoinString (const std::vector<std::string>& vector_string, const std::string& delimeter)
+    {
+        if (vector_string.empty())
+            return "";
+
+        size_t total_length = 0;        
+        for (const std::string& word : vector_string)
+                total_length += word.size();
+        
+        std::string connected_string;
+
+        connected_string.reserve(total_length);
+
+        for (const std::string& word: vector_string)
+        {
+            connected_string += word;
+            connected_string += delimeter; 
+        }
+
+        TrimRight(connected_string);
+        return connected_string;
+    }
+
+    std::string JoinString(const array::stArray& arr, const std::string& delimiter) {
+       
+        if (arr.length == 0)
+            return "";
+
+        size_t total_length = 0;
+        for (size_t i = 0; i < arr.length; ++i)
+            total_length += arr.data[i].size() + delimiter.size();
+
+        std::string connected_string;
+        connected_string.reserve(total_length);
+
+        for (size_t i = 0; i < arr.length; ++i) {
+            connected_string += arr.data[i];
+            if (i != arr.length - 1)
+                connected_string += delimiter;
+        }
+
+        return connected_string;
+    }
+
+
     void LowerAllString (std::string& text)
     {
         for (int i = 0; i < text.length(); i++)
@@ -198,15 +244,72 @@ namespace mystring {
         }
 
     }
-
     
     std::string  ReadString() { 
         std::string text;     
         std::cout << "Please Enter Your String?\n";     
         std::getline(std::cin, text); return text; 
     } 
-     
     
+    
+    std::string TrimCopy(const std::string& text) {
+        if (text.empty())
+            return "";
+
+        std::string result = text;
+        TrimLeft(result);
+        TrimRight(result);
+        return result;
+    }
+    
+    void Trim(std::string& text) {
+        TrimLeft(text);
+        TrimRight(text);
+    }
+    void TrimLeft(std::string& text) {
+        if (text.empty())
+            return;
+
+        for (size_t i = 0; i < text.length(); ++i) {
+            if (text[i] != ' ') {
+                text.erase(0, i); // remove leading spaces
+                return;
+            }
+        }
+        text.clear(); // all spaces
+    }
+
+    void TrimRight(std::string& text) {
+        if (text.empty())
+            return;
+
+        for (size_t i = text.length(); i > 0; --i) {
+            if (text[i - 1] != ' ') {
+                text.erase(i); // remove trailing spaces
+                return;
+            }
+        }
+        text.clear(); // all spaces
+    }
+
+    std::string TrimLeftCopy(const std::string& text) {
+        if (text.empty())
+            return "";
+
+        std::string result = text;
+        TrimLeft(result); // reuse in-place
+        return result;
+    }
+
+    std::string TrimRightCopy(const std::string& text) {
+        if (text.empty())
+            return "";
+
+        std::string result = text;
+        TrimRight(result); // reuse in-place
+        return result;
+    }
+
     void UpperAllString (std::string& text)
     {
         for (int i = 0; i < text.length(); i++)

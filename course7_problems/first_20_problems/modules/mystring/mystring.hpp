@@ -3,7 +3,7 @@
 #pragma once
 
 #include <string>
-#include "array/array.hpp"
+#include "../array/array.hpp"
 
 namespace mystring {
     
@@ -20,10 +20,17 @@ namespace mystring {
     char InvertLetterCase (char c);
     bool IsVowel(char c);
     std::string  ReadString();
-    void FillArrayWithFirstLetter (const std::string& text, array::stArray array);
+    void FillArrayWithFirstLetter (const std::string& text, array::stArray& array);
     void UpperFirstLetterOfEachWord (std::string& text);
     void LowerFirstLetterOfEachWord (std::string& text);
     void LowerAllString (std::string& text);
     void UpperAllString (std::string& text);
-    
+    void TrimRight(std::string& text);
+    void TrimLeft(std::string& text);
+    std::string TrimLeftCopy(const std::string& text);
+    std::string TrimRightCopy(const std::string& text);
+    void Trim(std::string& text);
+    std::string TrimCopy(const std::string& text);
+    std::string JoinString (const std::vector<std::string>& vector_string, const std::string& delimeter=" ");
+    std::string JoinString(const array::stArray& arr, const std::string& delimiter=" ");
 }

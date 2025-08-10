@@ -25,6 +25,7 @@ namespace mystring {
     void UpperFirstLetterOfEachWord (std::string& text);
     void LowerFirstLetterOfEachWord (std::string& text);
     void LowerAllString (std::string& text);
+    std::string LowerAllString (const std::string& text);
     void UpperAllString (std::string& text);
     void TrimRight(std::string& text);
     void TrimLeft(std::string& text);
@@ -37,6 +38,14 @@ namespace mystring {
     std::string ReverseStringCopy(const std::string& text, const std::string& delimiter=" ");
     void ReverseString(std::string& text, const std::string& delimiter=" ");
     void ReplaceWords (std::string& text, const std::string& string_toReplace, const std::string& string_replaceTo);   
-    
-    
+    std::vector<std::string> SplitString(std::string S1, std::string Delim);
+
+    std::string ReplaceWordInStringUsingSplit(
+    const std::string& input,
+    const std::string& stringToReplace,
+    const std::string& replaceTo,
+    bool matchCase = true
+    );
+
+
 }

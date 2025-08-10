@@ -9,16 +9,54 @@
 #include "mystring.hpp"
 #include "../array/array.hpp"
 namespace mystring {
+ 
+    
 
-    // void ReplaceWords (const std::string& text, std::string& string_toReplace, const std::string& string_replaceTo)
-    // {
-    //     short pos = text.find(string_toReplace);
-    //     while (pos != std::string::npos)
-    //     {
-    //         text = text.replace(pos, string_toReplace.length(), string_replaceTo);
-    //         pos = text.find(string_toReplace)
-    //     }
-    // }
+    std::vector<std::string> SplitString(std::string S1, std::string Delim) 
+    { 
+        std::vector<std::string> vString;
+        short pos = 0;
+        std::string sWord;
+        // define a string variable  // use find() function to get the position of the delimiters  
+        while ((pos = S1.find(Delim)) != std::string::npos)     
+        {         
+            sWord = S1.substr(0, pos); // store the word   
+        if (sWord != "")         
+        {    
+            vString.push_back(sWord);         
+        } 
+        S1.erase(0, pos + Delim.length());       
+        } 
+        if (S1 != "")     
+        {         
+            // it adds last word of the string.    
+            vString.push_back(S1); 
+        } 
+        return vString; 
+    }
+    
+    std::string ReplaceWordInStringUsingSplit(
+        const std::string& input,
+        const std::string& stringToReplace,
+        const std::string& replaceTo,
+        bool matchCase
+    ) {
+        std::vector<std::string> words = SplitString(input, " ");
+
+        for (std::string& word : words) {
+            if (matchCase) {
+                if (word == stringToReplace)
+                    word = replaceTo;
+            } else {
+                if (LowerAllString(static_cast<const std::string&>(word)) == LowerAllString(stringToReplace))
+                    word = replaceTo;
+            }
+        }
+
+        return JoinString(words, " ");
+    }
+
+
     void ReplaceWords (std::string& text, const std::string& string_toReplace, const std::string& string_replaceTo)
     {
         int pos = text.find(string_toReplace);
@@ -302,6 +340,13 @@ namespace mystring {
     }
 
 
+    std::string LowerAllString (const std::string& text)
+    {
+        std::string result = text;
+        LowerAllString(result);
+        return result;
+    }
+    
     void LowerAllString (std::string& text)
     {
         for (int i = 0; i < text.length(); i++)

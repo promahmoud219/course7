@@ -191,4 +191,40 @@ int main ()
     std::cout << "\nthis is my name if i replace Ahmed to Yousof:\n" << texto;
 
 
+    std::cout << "\n\nthis is my name if i replace Ahmed to Yousof but with using custom lib:\n\n";
+    std::cout << "\nwith matchCase:\n";
+    std::cout << "\nwithout matchCase:\n";
+    
+    texto = mystring::ReplaceWordInStringUsingSplit(texto, "Yousof", "Said");
+    std::cout << "\nthis is my name after renameing Yousof to Said:\n" << texto;
 }
+
+
+/*
+!
+!
+std::string ToUpper(const std::string& input) {
+    std::string result = input;
+    std::transform(result.begin(), result.end(), result.begin(),
+                   [](unsigned char c) { return std::toupper(c); });
+    return result;
+}
+std::string ToLowerManual(std::string text) {
+    for (char& c : text) { // range-based for loop
+        c = static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
+    }
+    return text;
+}
+
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+
+*/

@@ -34,8 +34,9 @@ namespace mystring {
     std::string TrimCopy(const std::string& text);
     std::string JoinString (const std::vector<std::string>& vector_string, const std::string& delimeter=" ");
     std::string JoinString(const array::stArray& arr, const std::string& delimiter=" ");
-    std::string ReverseString(const std::string& text, const std::string& delimiter=" ");
-    
+    std::string ReverseStringCopy(const std::string& text, const std::string& delimiter=" ");
+    void ReverseString(std::string& text, const std::string& delimiter=" ");
+    void ReplaceWords (std::string& text, const std::string& string_toReplace, const std::string& string_replaceTo);   
     
     
 }

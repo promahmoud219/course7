@@ -149,7 +149,7 @@ int main ()
     mystring::PrintEachWordInString(text);
     std::cout << "\n\nNumber of words: \n" << mystring::CountEachWordInString(text);
 
-<<<<<<< HEAD
+// <<<<<<< HEAD
 
     std::string my_name = "     Mahmoud Ahmed Abdel aal     ";
     std::cout << "\nthis is my name :\n" << my_name << "\n";
@@ -182,7 +182,13 @@ int main ()
     array::PrintStringArray(stArray); 
 
     std::string texto = "\nMahmoud Ahmed Abdel aal Ahmed Abo Hamad";
+    mystring::ReverseString(texto);
+    std::cout << "\nthis is my name reversed:\n" << texto;
+    texto = mystring::ReverseStringCopy(texto);
+    std::cout << "\nthis is my name reversed with the ReverseStringCopy:\n" << texto;
 
-    text = mystring::ReverseString(texto);
-    std::cout << "\nthis is my name reversed:\n" << ;
+    mystring::ReplaceWords(texto, "Ahmed", "Yousof");
+    std::cout << "\nthis is my name if i replace Ahmed to Yousof:\n" << texto;
+
+
 }

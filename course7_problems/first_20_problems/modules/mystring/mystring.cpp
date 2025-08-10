@@ -10,6 +10,26 @@
 #include "../array/array.hpp"
 namespace mystring {
 
+    // void ReplaceWords (const std::string& text, std::string& string_toReplace, const std::string& string_replaceTo)
+    // {
+    //     short pos = text.find(string_toReplace);
+    //     while (pos != std::string::npos)
+    //     {
+    //         text = text.replace(pos, string_toReplace.length(), string_replaceTo);
+    //         pos = text.find(string_toReplace)
+    //     }
+    // }
+    void ReplaceWords (std::string& text, const std::string& string_toReplace, const std::string& string_replaceTo)
+    {
+        int pos = text.find(string_toReplace);
+        while (pos != std::string::npos)
+        {
+            text.replace(pos, string_toReplace.length(), string_replaceTo);
+            pos = text.find(string_toReplace, pos + string_replaceTo.length());
+
+        }
+    }
+
     std::string ReverseStringCopy(const std::string& text, const std::string& delimiter)
     {
         std::string result = text;
@@ -24,7 +44,7 @@ namespace mystring {
 
         // Split into words
         std::vector<std::string> words;
-        size_t start = 0, pos;
+        int start = 0, pos;
         while ((pos = text.find(delimiter, start)) != std::string::npos) {
             std::string word = text.substr(start, pos - start);
             if (!word.empty())
@@ -42,7 +62,6 @@ namespace mystring {
         // Join back into a single string
         text = JoinString(words, delimiter);
     }
-
 
     void SplitString (std::string& text, array::stArray& array)
     {
@@ -62,7 +81,7 @@ namespace mystring {
         } 
         if (text!="")     
         {
-            array.data[array.length] = sWord;
+            array.data[array.length] = text;
             array.length++;
         }
 
@@ -243,7 +262,7 @@ namespace mystring {
         if (vector_string.empty())
             return "";
 
-        size_t total_length = 0;        
+        int total_length = 0;        
         for (const std::string& word : vector_string)
                 total_length += word.size();
         
@@ -266,14 +285,14 @@ namespace mystring {
         if (arr.length == 0)
             return "";
 
-        size_t total_length = 0;
-        for (size_t i = 0; i < arr.length; ++i)
+        int total_length = 0;
+        for (int i = 0; i < arr.length; ++i)
             total_length += arr.data[i].size() + delimiter.size();
 
         std::string connected_string;
         connected_string.reserve(total_length);
 
-        for (size_t i = 0; i < arr.length; ++i) {
+        for (int i = 0; i < arr.length; ++i) {
             connected_string += arr.data[i];
             if (i != arr.length - 1)
                 connected_string += delimiter;
@@ -331,7 +350,7 @@ namespace mystring {
         if (text.empty())
             return;
 
-        for (size_t i = 0; i < text.length(); ++i) {
+        for (int i = 0; i < text.length(); ++i) {
             if (text[i] != ' ') {
                 text.erase(0, i); // remove leading spaces
                 return;
@@ -344,7 +363,7 @@ namespace mystring {
         if (text.empty())
             return;
 
-        for (size_t i = text.length(); i > 0; --i) {
+        for (int i = text.length(); i > 0; --i) {
             if (text[i - 1] != ' ') {
                 text.erase(i); // remove trailing spaces
                 return;

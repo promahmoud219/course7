@@ -149,6 +149,7 @@ int main ()
     mystring::PrintEachWordInString(text);
     std::cout << "\n\nNumber of words: \n" << mystring::CountEachWordInString(text);
 
+<<<<<<< HEAD
 
     std::string my_name = "     Mahmoud Ahmed Abdel aal     ";
     std::cout << "\nthis is my name :\n" << my_name << "\n";
@@ -174,5 +175,14 @@ int main ()
     std::cout << "\n\nthis is the vector after joining words with vector:\n" << mystring::JoinString(vString, ",");
     std::cout << "\n\nthis is the vector after joining words with array:\n" << mystring::JoinString(array_string, "#");
     
+ 
+    array::stArray stArray;
+    std::string text2 = "\nMahmoud Ahmed Abdel aal Ahmed Abo Hamad";
+    mystring::SplitString(text2, stArray);
+    array::PrintStringArray(stArray); 
 
+    std::string texto = "\nMahmoud Ahmed Abdel aal Ahmed Abo Hamad";
+
+    text = mystring::ReverseString(texto);
+    std::cout << "\nthis is my name reversed:\n" << ;
 }

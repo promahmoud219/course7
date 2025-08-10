@@ -4,11 +4,71 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <algorithm>
 
 #include "mystring.hpp"
 #include "../array/array.hpp"
+namespace mystring {
 
-namespace mystring {  
+    std::string ReverseStringCopy(const std::string& text, const std::string& delimiter)
+    {
+        std::string result = text;
+        ReverseString(result, delimiter);
+        return result;
+    }
+
+    void ReverseString(std::string& text, const std::string& delimiter)
+    {
+        if (text.empty())
+            return;
+
+        // Split into words
+        std::vector<std::string> words;
+        size_t start = 0, pos;
+        while ((pos = text.find(delimiter, start)) != std::string::npos) {
+            std::string word = text.substr(start, pos - start);
+            if (!word.empty())
+                words.push_back(word);
+            start = pos + delimiter.size();
+        }
+
+        // Add last word if exists
+        if (start < text.size())
+            words.push_back(text.substr(start));
+
+        // Reverse the vector
+        std::reverse(words.begin(), words.end());
+
+        // Join back into a single string
+        text = JoinString(words, delimiter);
+    }
+
+
+    void SplitString (std::string& text, array::stArray& array)
+    {
+        array.length = 0;
+        std::string delim = " "; 
+        short pos = 0; 
+        std::string sWord; // define a string variable  // use find() function to get the position of the delimiters  
+        while ((pos = text.find(delim)) != std::string::npos)     
+        {         
+            sWord =text.substr(0, pos); // store the word   
+            if (sWord !="")         
+            {
+                array.data[array.length] = sWord;
+                array.length++;
+            }
+            text.erase(0, pos + delim.length());  /* erase() until positon and move to next word. */    
+        } 
+        if (text!="")     
+        {
+            array.data[array.length] = sWord;
+            array.length++;
+        }
+
+            
+ 
+    }
 
     int CountVowels (const std::string& text)
     {
@@ -103,6 +163,7 @@ namespace mystring {
         
     }
     
+    
     void PrintEachWordInString(std::string text) 
     { 
         std::string delim = " "; // delimiter      
@@ -123,7 +184,7 @@ namespace mystring {
         } 
 
     }
-    
+
     int CountEachWordInString(std::string& text) 
     { 
         int counter = 0;

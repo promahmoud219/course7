@@ -19,6 +19,7 @@ namespace mystring {
     void InvertLetterCase (std::string& text);
     char InvertLetterCase (char c);
     bool IsVowel(char c);
+    void SplitString (std::string& text, array::stArray& array);
     std::string  ReadString();
     void FillArrayWithFirstLetter (const std::string& text, array::stArray& array);
     void UpperFirstLetterOfEachWord (std::string& text);
@@ -33,4 +34,8 @@ namespace mystring {
     std::string TrimCopy(const std::string& text);
     std::string JoinString (const std::vector<std::string>& vector_string, const std::string& delimeter=" ");
     std::string JoinString(const array::stArray& arr, const std::string& delimiter=" ");
+    std::string ReverseString(const std::string& text, const std::string& delimiter=" ");
+    
+    
+    
 }

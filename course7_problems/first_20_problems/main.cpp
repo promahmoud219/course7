@@ -9,7 +9,7 @@
 #include "modules/mystring/mystring.hpp"
 #include "modules/array/array.hpp"
 #include "modules/inputvalidation/inputvalidation.hpp"
-                                                                                                        
+#include "modules/client/client.hpp"                                                                                                        
 
 int main () 
 {
@@ -197,12 +197,23 @@ int main ()
     
     texto = mystring::ReplaceWordInStringUsingSplit(texto, "Yousof", "Said");
     std::cout << "\nthis is my name after renameing Yousof to Said:\n" << texto;
+
+
+    std::cout << "\n\nthis is read New client:\n";
+    client::stClient client;
+    client::ReadNewClient(client);
+    std::string line = "";
+    line = client::convertRecordToLine(client);
+    std::cout << "\nthis is the line:\n" << line;
+
+    client::stClient empty_client;
+    empty_client = client::ConvertLineToRecord(line);
+    std::cout << "\nthis is the record:\n";
+    client::PrintClientRecord(empty_client);
 }
 
 
-/*
-!
-!
+/* 
 std::string ToUpper(const std::string& input) {
     std::string result = input;
     std::transform(result.begin(), result.end(), result.begin(),
@@ -215,16 +226,5 @@ std::string ToLowerManual(std::string text) {
     }
     return text;
 }
-
-!
-!
-!
-!
-!
-!
-!
-!
-!
-!
 
 */

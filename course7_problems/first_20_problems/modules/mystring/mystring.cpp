@@ -8,10 +8,9 @@
 
 #include "mystring.hpp"
 #include "../array/array.hpp"
-namespace mystring {
- 
-    
 
+namespace mystring {
+   
     std::vector<std::string> SplitString(std::string S1, std::string Delim) 
     { 
         std::vector<std::string> vString;
@@ -220,7 +219,6 @@ namespace mystring {
         
     }
     
-    
     void PrintEachWordInString(std::string text) 
     { 
         std::string delim = " "; // delimiter      
@@ -294,7 +292,6 @@ namespace mystring {
         return vowels.find(c) != std::string::npos;
     }
 
-
     std::string JoinString (const std::vector<std::string>& vector_string, const std::string& delimeter)
     {
         if (vector_string.empty())
@@ -339,7 +336,6 @@ namespace mystring {
         return connected_string;
     }
 
-
     std::string LowerAllString (const std::string& text)
     {
         std::string result = text;
@@ -376,7 +372,6 @@ namespace mystring {
         std::getline(std::cin, text); return text; 
     } 
     
-    
     std::string TrimCopy(const std::string& text) {
         if (text.empty())
             return "";
@@ -391,6 +386,7 @@ namespace mystring {
         TrimLeft(text);
         TrimRight(text);
     }
+    
     void TrimLeft(std::string& text) {
         if (text.empty())
             return;
@@ -457,6 +453,5 @@ namespace mystring {
         }
 
     }
-
 
 }

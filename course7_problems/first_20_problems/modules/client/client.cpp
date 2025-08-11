@@ -1,0 +1,80 @@
+// client.cpp
+
+#include <iostream>
+#include <limits>
+#include <vector>
+
+#include "client.hpp"
+#include "../mystring/mystring.hpp"
+#include "../array/array.hpp"
+
+
+namespace client {
+
+    void ReadNewClient (stClient& client)
+    {
+
+        std::cout << "Enter Account Number? ";
+        std::getline(std::cin, client.accountNumber);
+
+        std::cout << "Enter PinCode? ";
+        std::getline(std::cin, client.pinCode);
+
+        std::cout << "Enter Name? ";
+        std::getline(std::cin, client.name);
+
+        std::cout << "Enter Phone? ";
+        std::getline(std::cin, client.phone);
+
+        std::cout << "Enter Account Balance? ";
+        std::cin >> client.accountBalance;
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // flush leftover input
+    }
+
+    stClient ReadNewClient (const stClient& client)
+    {
+        stClient result;
+        result = client;
+        ReadNewClient(result);
+        return result;
+    }
+
+    std::string convertRecordToLine(const stClient& client, const std::string& separator)
+    {
+        return client.accountNumber + separator +
+            client.pinCode + separator +
+            client.name + separator +
+            client.phone + separator +
+            std::to_string(client.accountBalance);
+    }
+
+    void ConvertLineToRecord(stClient& client, std::string& line)
+    {
+        std::vector<std::string> vClientData = mystring::SplitString(line, "#//#");
+
+        client.accountNumber   = vClientData[0];
+        client.pinCode         = vClientData[1];
+        client.name            = vClientData[2];
+        client.phone           = vClientData[3];
+        client.accountBalance  = std::stod(vClientData[4]);
+    }
+
+    
+    stClient ConvertLineToRecord (std::string& line)
+    {
+        stClient client;
+        ConvertLineToRecord(client, line); // Reuse the first version
+        return client;
+    }
+
+
+    void PrintClientRecord(client::stClient& client) 
+    {     
+        std::cout << "\n\nThe following is the extracted client record:\n";     
+        std::cout << "\nAccout Number: " << client.accountNumber;     
+        std::cout << "\nPin Code     : " << client.pinCode;     
+        std::cout << "\nName         : " << client.name;     
+        std::cout << "\nPhone        : " << client.phone;     
+        std::cout << "\nAccount Balance: "<<client.accountBalance; 
+    }
+}

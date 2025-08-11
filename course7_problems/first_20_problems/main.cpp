@@ -210,6 +210,8 @@ int main ()
     empty_client = client::ConvertLineToRecord(line);
     std::cout << "\nthis is the record:\n";
     client::PrintClientRecord(empty_client);
+
+    client::AddClients();
 }
 
 

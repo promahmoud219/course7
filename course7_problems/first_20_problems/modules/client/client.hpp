@@ -22,6 +22,7 @@ namespace client {
     stClient ConvertLineToRecord (std::string& line);
     void PrintClientRecord (client::stClient& client);
 
-
-
+    void AddClients();
+    void AddLineToFile (const std::string& fileName, const std::string& data_line);
+    void AddNewClient ();
 }

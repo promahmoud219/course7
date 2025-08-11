@@ -3,6 +3,7 @@
 #include <iostream>
 #include <limits>
 #include <vector>
+#include <fstream>
 
 #include "client.hpp"
 #include "../mystring/mystring.hpp"
@@ -15,7 +16,7 @@ namespace client {
     {
 
         std::cout << "Enter Account Number? ";
-        std::getline(std::cin, client.accountNumber);
+        std::getline(std::cin >> std::ws, client.accountNumber);
 
         std::cout << "Enter PinCode? ";
         std::getline(std::cin, client.pinCode);
@@ -58,7 +59,6 @@ namespace client {
         client.phone           = vClientData[3];
         client.accountBalance  = std::stod(vClientData[4]);
     }
-
     
     stClient ConvertLineToRecord (std::string& line)
     {
@@ -66,7 +66,6 @@ namespace client {
         ConvertLineToRecord(client, line); // Reuse the first version
         return client;
     }
-
 
     void PrintClientRecord(client::stClient& client) 
     {     
@@ -77,4 +76,41 @@ namespace client {
         std::cout << "\nPhone        : " << client.phone;     
         std::cout << "\nAccount Balance: "<<client.accountBalance; 
     }
+    
+    void AddNewClient ()
+    {
+        stClient client;
+        ReadNewClient(client);
+        PrintClientRecord(client);
+
+        char saveChoice = 'y';
+        std::cout << "\nSave this client to file? (y/n): ";
+        std::cin >> saveChoice;    
+        if (saveChoice)
+            AddLineToFile("clients.txt", convertRecordToLine(client));
+    }
+
+    void AddLineToFile (const std::string& fileName, const std::string& data_line)
+    {
+        std::fstream file;
+        file.open(fileName, std::ios::out | std::ios::app);
+        if (file.is_open()) {
+            file << data_line << std::endl;
+            file.close();
+        }
+    }
+    void AddClients()
+    {
+        char addMore = 'y';
+
+        do
+        {
+            std::cout << "\n\n\nAdding New Client:\n\n";
+            AddNewClient();
+            std::cout << "\nAdd another client? (y/n): ";
+            std::cin >> addMore;
+
+        } while (toupper(addMore) == 'Y');
+    }
+
 }

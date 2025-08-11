@@ -3,6 +3,7 @@
 #include <iostream>
 #include <limits>
 #include <vector>
+#include <iomanip>
 #include <fstream>
 
 #include "client.hpp"
@@ -99,6 +100,7 @@ namespace client {
             file.close();
         }
     }
+    
     void AddClients()
     {
         char addMore = 'y';
@@ -112,5 +114,73 @@ namespace client {
 
         } while (toupper(addMore) == 'Y');
     }
+
+    std::vector<stClient> LoadDataFromFile (const std::string& fileName)
+    {
+        std::vector<stClient> vClients;
+        std::fstream file;
+        file.open(fileName, std::ios::in);
+        if (file.is_open())
+        {
+            std::string line = "";
+            stClient client;
+
+            while(getline(file, line))
+            {
+                client = ConvertLineToRecord(line);
+                vClients.push_back(client);
+            }
+            file.close();
+        }
+        return vClients;
+    }
+
+    void ShowHeader (const std::string& title)
+    {
+        std::cout << "\n\t\t\t\t" << title;
+    }
+
+    void ShowTable () 
+    {
+        ShowLine();
+        
+        std::cout << "| " << std::left << std::setw(15) << " ";
+        std::cout << "| " << std::left << std::setw(10) << " ";
+        std::cout << "| " << std::left << std::setw(40) << " ";
+        std::cout << "| " << std::left << std::setw(12) << " ";
+        std::cout << "| " << std::left << std::setw(12) << " ";
+
+        ShowLine();
+    }
+
+    void ShowLine()
+    {
+        std::cout << "\n-----------------------------------------------------------";
+        std::cout << "-----------------------------------------------------------\n";
+    }
+
+    void PrintLineRecord (const stClient& client)
+    {
+        std::cout << ""
+    }
+    void PrintRecord (const std::vector<stClient>& vClients)
+    {
+        for (const stClient& client : vClients)
+        {
+            PrintLineRecord(client);    
+        }
+        
+    }
+    void ShowClients(const std::string& fileName)
+    {
+        std::vector<stClient> vClients = LoadDataFromFile(fileName); //! backend
+        std::string title = "Client List (" + std::to_string(vClients.size()) + " Client(s)";  //! front-end -> UI
+        ShowHeader(title); //! UI in front-end
+        ShowTable();
+        PrintLineRecord();
+        
+    }
+    
+
 
 }

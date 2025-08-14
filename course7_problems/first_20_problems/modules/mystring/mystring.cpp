@@ -1,5 +1,14 @@
 // mystring.cpp
-
+/**
+ * @file mystring.cpp
+ * @author your name (you@domain.com)
+ * @brief 
+ * @version 0.1
+ * @date 2025-08-14
+ * 
+ * @copyright Copyright (c) 2025
+ * 
+ */
 
 #include <iostream>
 #include <string>
@@ -8,7 +17,6 @@
 
 #include "mystring.hpp"
 #include "../array/array.hpp"
-
 namespace mystring {
    
     std::vector<std::string> SplitString(std::string S1, std::string Delim) 

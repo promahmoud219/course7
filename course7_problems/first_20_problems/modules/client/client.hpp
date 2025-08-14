@@ -23,6 +23,22 @@ namespace client {
     void PrintClientRecord (client::stClient& client);
 
     void AddClients();
-    void AddLineToFile (const std::string& fileName, const std::string& data_line);
+    void AddLineToFile (const std::string& fileName=DEFAULT_CLIENTS_FILE, const std::string& data_line);
     void AddNewClient ();
+
+    void ShowClients(const std::string& fileName=DEFAULT_CLIENTS_FILE);
+    void PrintRecord (const std::vector<stClient>& vClients);
+    void PrintLineRecord (const stClient& client);
+    void ShowTable ();
+    void ShowHeader (const std::string& title);
+
+    std::string GetAccountNumber ();
+    bool FindClientByAccountNumber (
+        const std::vector<stClient>& vClients, 
+        stClient client_to_find, 
+        const std::string& accountNumber);
+
+        
+        
+        
 }

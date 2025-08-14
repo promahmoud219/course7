@@ -13,6 +13,9 @@
 
 namespace client {
 
+    inline constexpr const char* DEFAULT_CLIENTS_FILE = "clients.csv";
+
+
     void ReadNewClient (stClient& client)
     {
 
@@ -75,7 +78,7 @@ namespace client {
         std::cout << "\nPin Code     : " << client.pinCode;     
         std::cout << "\nName         : " << client.name;     
         std::cout << "\nPhone        : " << client.phone;     
-        std::cout << "\nAccount Balance: "<<client.accountBalance; 
+        std::cout << "\nAccount Balance: "<<client.accountBalance << "\n"; 
     }
     
     void AddNewClient ()
@@ -85,10 +88,10 @@ namespace client {
         PrintClientRecord(client);
 
         char saveChoice = 'y';
-        std::cout << "\nSave this client to file? (y/n): ";
+        std::cout << "\nSave this client to file? (y/n): "; //! 
         std::cin >> saveChoice;    
         if (saveChoice)
-            AddLineToFile("clients.txt", convertRecordToLine(client));
+            AddLineToFile(DEF, convertRecordToLine(client));
     }
 
     void AddLineToFile (const std::string& fileName, const std::string& data_line)
@@ -140,29 +143,34 @@ namespace client {
         std::cout << "\n\t\t\t\t" << title;
     }
 
-    void ShowTable () 
-    {
-        ShowLine();
-        
-        std::cout << "| " << std::left << std::setw(15) << " ";
-        std::cout << "| " << std::left << std::setw(10) << " ";
-        std::cout << "| " << std::left << std::setw(40) << " ";
-        std::cout << "| " << std::left << std::setw(12) << " ";
-        std::cout << "| " << std::left << std::setw(12) << " ";
-
-        ShowLine();
-    }
-
     void ShowLine()
     {
         std::cout << "\n-----------------------------------------------------------";
         std::cout << "-----------------------------------------------------------\n";
     }
-
+    
+    void ShowTable () 
+    {
+        ShowLine();
+        
+        std::cout << "| " << std::left << std::setw(15) << "Account Number";
+        std::cout << "| " << std::left << std::setw(10) << "Pin Code";
+        std::cout << "| " << std::left << std::setw(40) << "Client Name";
+        std::cout << "| " << std::left << std::setw(16) << "Phone";
+        std::cout << "| " << std::left << std::setw(12) << "Balance";
+        
+        ShowLine();
+    }
+    
     void PrintLineRecord (const stClient& client)
     {
-        std::cout << ""
+        std::cout << "| " << std::left << std::setw(15) << client.accountNumber;
+        std::cout << "| " << std::left << std::setw(10) << client.pinCode;
+        std::cout << "| " << std::left << std::setw(40) << client.name;
+        std::cout << "| " << std::left << std::setw(16) << client.phone;
+        std::cout << "| " << std::left << std::setw(12) << client.accountBalance << "\n";
     }
+
     void PrintRecord (const std::vector<stClient>& vClients)
     {
         for (const stClient& client : vClients)
@@ -171,16 +179,45 @@ namespace client {
         }
         
     }
+    
     void ShowClients(const std::string& fileName)
     {
         std::vector<stClient> vClients = LoadDataFromFile(fileName); //! backend
-        std::string title = "Client List (" + std::to_string(vClients.size()) + " Client(s)";  //! front-end -> UI
+        std::string title = "Client List " + std::to_string(vClients.size()) + " Client(s)";  //! front-end -> UI
         ShowHeader(title); //! UI in front-end
-        ShowTable();
-        PrintLineRecord();
+        ShowTable(); 
+        PrintRecord(vClients);
         
     }
-    
 
+    std::string GetAccountNumber () 
+    {
+        //! this is utils in back-end 
+        std::string accountNumber = "";
+        std::cout << "\nPlease enter Account Number:\n";//! helper
+        std::cin >> accountNumber;
+        return accountNumber;
+    }
 
+    bool FindClientByAccountNumber (const std::vector<stClient>& vClients, stClient client_to_find, const std::string& accountNumber)
+    {
+        for (const stClient& client : vClients)
+        {
+            if (client.accountNumber == accountNumber)
+            {
+                client_to_find = client;
+                return true;
+            }
+        } 
+        return false;
+    }
+
+    void findClientsScreen (const std::string& fileName)
+    {
+            
+    }
 }
+/*
+!  
+
+*/

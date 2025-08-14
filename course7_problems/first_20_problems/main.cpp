@@ -212,6 +212,12 @@ int main ()
     client::PrintClientRecord(empty_client);
 
     client::AddClients();
+
+    client::ShowClients("clients.txt");
+
+    client::
+
+    
 }
 
 

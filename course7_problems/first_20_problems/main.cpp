@@ -10,6 +10,8 @@
 #include "modules/array/array.hpp"
 #include "modules/inputvalidation/inputvalidation.hpp"
 #include "modules/client/client.hpp"                                                                                                        
+#include "config.hpp"
+
 
 int main () 
 {
@@ -200,22 +202,23 @@ int main ()
 
 
     std::cout << "\n\nthis is read New client:\n";
-    client::stClient client;
-    client::ReadNewClient(client);
+    client::Client client;
+    client::readNewClient(client);
     std::string line = "";
-    line = client::convertRecordToLine(client);
+    line = client::toLine(client);
     std::cout << "\nthis is the line:\n" << line;
 
-    client::stClient empty_client;
-    empty_client = client::ConvertLineToRecord(line);
+    client::Client empty_client;
+    empty_client = client::parseLineToClient(line);
     std::cout << "\nthis is the record:\n";
-    client::PrintClientRecord(empty_client);
+    client::printClientRecord(empty_client);
 
-    client::AddClients();
+    client::addClients();
 
-    client::ShowClients("clients.txt");
+    client::showClients(config::DEFAULT_CLIENTS_FILE);
 
-    client::
+    std::cout << "\n\nFind Clients Screen:\n";
+    client::findClientsScreen();
 
     
 }

@@ -3,10 +3,13 @@
 #pragma once 
 
 #include <string>
+#include <string_view>
+
+#include "../../config.hpp"
 
 namespace client {
     
-    struct stClient 
+    struct Client 
     {
         std::string accountNumber;
         std::string pinCode;
@@ -14,30 +17,38 @@ namespace client {
         std::string phone;
         double accountBalance = 0.0;
     };
- 
-    void ReadNewClient (stClient& client);
-    stClient ReadNewClient (const stClient& client);
-    std::string convertRecordToLine (const stClient& client, const std::string& separator="#//#");
-    void ConvertLineToRecord (stClient& client, std::string& line);
-    stClient ConvertLineToRecord (std::string& line);
-    void PrintClientRecord (client::stClient& client);
-
-    void AddClients();
-    void AddLineToFile (const std::string& fileName=DEFAULT_CLIENTS_FILE, const std::string& data_line);
-    void AddNewClient ();
-
-    void ShowClients(const std::string& fileName=DEFAULT_CLIENTS_FILE);
-    void PrintRecord (const std::vector<stClient>& vClients);
-    void PrintLineRecord (const stClient& client);
-    void ShowTable ();
-    void ShowHeader (const std::string& title);
-
-    std::string GetAccountNumber ();
-    bool FindClientByAccountNumber (
-        const std::vector<stClient>& vClients, 
-        stClient client_to_find, 
+    
+    void addClients();
+    void addLineToFile (const std::string& data_line, const std::string_view& fileName = config::DEFAULT_CLIENTS_FILE);
+    void addNewClient ();
+    
+    bool doesClientExist (
+        const std::vector<Client>& Clients, 
+        Client& client, 
         const std::string& accountNumber);
+    
+    void findClientsScreen (const std::string_view& fileName=config::DEFAULT_CLIENTS_FILE);
 
+    std::vector<Client> loadDataFromFile (const std::string_view& fileName=config::DEFAULT_CLIENTS_FILE);
+
+    void parseLineToClient (Client& client, std::string& line);
+    Client parseLineToClient (std::string& line);
+    void printClientRecord (Client& client);
+    void printRecord (const std::vector<Client>& Clients);
+    void printLineRecord (const Client& client);
+    std::string promptAccountNumber ();
+    
+    
+    void readNewClient (Client& client);
+    Client readNewClient ();
+
+    void showClients(const std::string_view& fileName=config::DEFAULT_CLIENTS_FILE);
+    // void showClients(const std::string_view& fileName=config::DEFAULT_CLIENTS_FILE);
+    void showTable ();
+    void showHeader (const std::string& title);
+
+        
+    std::string toLine  (const Client& client, const std::string& separator="#//#");
         
         
         

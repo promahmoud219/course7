@@ -64,4 +64,23 @@ namespace inputvalidation {
 
         return number;
     }
+    bool AskYesNo(const std::string& prompt) {
+
+        char choice;
+
+        while (true) {
+            std::cout << prompt << " (y/n): ";
+            std::cin >> choice;
+
+            // Clear leftover input if user typed more than one char
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+            choice = static_cast<char>(std::tolower(static_cast<unsigned char>(choice)));
+            if (choice == 'y') return true;
+            if (choice == 'n') return false;
+
+            std::cout << "Invalid input. Please enter 'y' or 'n'.\n";
+        }
+    }
+
 } 

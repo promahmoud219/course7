@@ -151,7 +151,7 @@ int main ()
     mystring::PrintEachWordInString(text);
     std::cout << "\n\nNumber of words: \n" << mystring::CountEachWordInString(text);
 
-// <<<<<<< HEAD
+
 
     std::string my_name = "     Mahmoud Ahmed Abdel aal     ";
     std::cout << "\nthis is my name :\n" << my_name << "\n";
@@ -221,8 +221,10 @@ int main ()
     client::findClientsScreen();
 
     client::deleteClientScreen();
+    
+    client::updateClientScreen();
 }
-
+ 
 
 /* 
 std::string ToUpper(const std::string& input) {

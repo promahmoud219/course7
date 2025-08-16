@@ -74,27 +74,8 @@ namespace client {
         
     }
 
-    void printDeleteResult(const DeleteResult& delete_result)
-    {
-        switch (delete_result)
-        {
-        case DeleteResult::NotFound:
-            std::cout << "\nAccount Not Found\n";
-            break;
-        case DeleteResult::Cancelled:
-            std::cout << "\nOperation Cancelled\n";
-            break;
-        case DeleteResult::Error:
-            std::cout << "\nError!\n";
-            break;
-        case DeleteResult::Success:
-            std::cout << "\nSuccessed :-)\n";
-            break;
-        default:
-            std::cout << "\nDefault Result\n";
-            break;
-        }
-    }
+    
+    
 
     DeleteResult deleteClient()
     {
@@ -115,6 +96,7 @@ namespace client {
 
         return DeleteResult::Success;
     }
+
 
  
     void findClientsScreen (const std::string_view& file_name)
@@ -159,6 +141,19 @@ namespace client {
             if (c.account_number == account_number)
             {
                 c.delete_mark = true;
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    bool markForUpdate(std::vector<Client>& clients, const std::string& account_number)
+    {
+        for (Client& c : clients)
+        {
+            if (c.account_number == account_number)
+            {
+                c.update_mark = true;
                 return true;
             }
         }
@@ -221,6 +216,49 @@ namespace client {
         return account_number;
     }
     
+    void printDeleteResult(const DeleteResult& delete_result)
+    {
+        switch (delete_result)
+        {
+        case DeleteResult::NotFound:
+            std::cout << "\nAccount Not Found\n";
+            break;
+        case DeleteResult::Cancelled:
+            std::cout << "\nOperation Cancelled\n";
+            break;
+        case DeleteResult::Error:
+            std::cout << "\nError!\n";
+            break;
+        case DeleteResult::Success:
+            std::cout << "\nSuccessed :-)\n";
+            break;
+        default:
+            std::cout << "\nDefault Result\n";
+            break;
+        }
+    }
+    
+    void printUpdateResult(const UpdateResult& update_result)
+    {
+        switch (update_result)
+        {
+        case UpdateResult::NotFound:
+            std::cout << "\nAccount Not Found\n";
+            break;
+        case UpdateResult::Cancelled:
+            std::cout << "\nOperation Cancelled\n";
+            break;
+        case UpdateResult::Error:
+            std::cout << "\nError!\n";
+            break;
+        case UpdateResult::Success:
+            std::cout << "\nSuccessed :-)\n";
+            break;
+        default:
+            std::cout << "\nDefault Result\n";
+            break;
+        }
+    }
     
     void readNewClient (Client& client)
     {
@@ -249,10 +287,51 @@ namespace client {
         return result;
     }
     
+    void readClientByAccount(Client& client, const std::string& account_number)
+    {
+        client.account_number = account_number;
+
+        std::cout << "Enter PinCode? ";
+        std::getline(std::cin >> std::ws, client.pinCode);
+
+        std::cout << "Enter Name? ";
+        std::getline(std::cin, client.name);
+
+        std::cout << "Enter Phone? ";
+        std::getline(std::cin, client.phone);
+
+        std::cout << "Enter Account Balance? ";
+        std::cin >> client.account_balance;
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // flush leftover input
+    }
+
     bool removeClientByAccount (std::vector<Client>& clients, const std::string& account_number)
     {
         if (!markForDelete(clients, account_number))
             return false;
+        saveToFile(clients);
+        return true;
+    }
+    
+    
+    void updateClientData (std::vector<Client>& clients, const std::string& account_number)
+    {
+        for (Client& client : clients)
+        {
+            if (client.account_number == account_number)
+            {
+                readClientByAccount(client, account_number);
+            }
+            
+        }
+        
+    }
+   
+    bool updateClientByAccount (std::vector<Client>& clients, const std::string& account_number)
+    {
+        if (!markForUpdate(clients, account_number))
+            return false;
+        updateClientData(clients, account_number);
         saveToFile(clients);
         return true;
     }
@@ -310,4 +389,32 @@ namespace client {
             client.phone + separator +
             std::to_string(client.account_balance);
     }
+
+
+    void updateClientScreen()
+    {
+        std::cout << "\nthis is Update Client Screen\n";//! UI 
+        printUpdateResult(updateClient());
+    }
+
+    UpdateResult updateClient()
+    {
+        std::string account_number = promptAccountNumber();
+        std::vector<Client> clients = loadDataFromFile();
+        Client client;
+
+        if (!doesClientExist(clients, client, account_number))
+            return UpdateResult::NotFound;
+
+        printClientRecord(client);
+
+        if (!inputvalidation::AskYesNo("\nAre you sure you want to update this record? y/n"))
+            return UpdateResult::Cancelled;
+
+        if (!updateClientByAccount(clients, account_number))
+            return UpdateResult::Error;
+
+        return UpdateResult::Success;
+    }
+
 }   

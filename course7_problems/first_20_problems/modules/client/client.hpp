@@ -17,10 +17,12 @@ namespace client {
         std::string phone;
         double account_balance = 0.0;
         bool delete_mark = false;
+        bool update_mark = false;
     };
 
     enum class DeleteResult { Success, Cancelled, NotFound, Error };
-    
+    enum class UpdateResult { NotFound, Cancelled, Error, Success };
+        
     void addClients();
     void addLineToFile (const std::string& data_line, const std::string_view& fileName = config::DEFAULT_CLIENTS_FILE);
     void addNewClient ();
@@ -56,6 +58,14 @@ namespace client {
         
     std::string toLine  (const Client& client, const std::string& separator="#//#");
         
-        
+    void updateClientScreen();
+    UpdateResult updateClient();
+    void updateClientData (std::vector<Client>& clients, const std::string& account_number);
+    bool updateClientByAccount (std::vector<Client>& clients, const std::string& account_number)       ;
+    void printUpdateResult(const UpdateResult& update_result);
+    void readClientByAccount(Client& client, const std::string& account_number);
+    bool markForUpdate(std::vector<Client>& clients, const std::string& account_number);
         
 }
+
+ 

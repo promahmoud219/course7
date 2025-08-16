@@ -220,7 +220,7 @@ int main ()
     std::cout << "\n\nFind Clients Screen:\n";
     client::findClientsScreen();
 
-    
+    client::deleteClientScreen();
 }
 
 
